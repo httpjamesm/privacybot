@@ -7,6 +7,7 @@ try:
     with open('config.json', 'r') as config_file:
         configdata = json.load(config_file)
         token = configdata["token"]
+        prefix = configdata["prefix"]
 except:
     print("No config.json file found! Exiting application now.")
     exit()
@@ -17,7 +18,7 @@ initial_extensions = [
     'cogs.misc'
 ]
 
-bot = commands.Bot(command_prefix=['!'])
+bot = commands.Bot(command_prefix=prefix)
 
 @bot.command()
 @commands.cooldown(1,30,commands.BucketType.guild)
