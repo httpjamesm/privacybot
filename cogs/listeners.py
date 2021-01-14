@@ -28,7 +28,7 @@ class listeners(commands.Cog):
                 if message.channel.id == x["channelid"]:
                     await message.delete()
                     return
-        elif (message.content.startswith('/') and splitted[1] != "/"):
+        if (message.content.startswith('/') and splitted[1] != "/"):
                 await message.delete()
                 del splitted[0]
                 embed=discord.Embed(title=":clock1: Self-Destructing Message from " + str(message.author.name), description=''.join(splitted), color=0xff2600)
