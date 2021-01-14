@@ -13,7 +13,8 @@ PrivacyBot is very easy and quick to get up and running on your server. This gui
 In order to run PrivacyBot you'll need a server with the following:
 
 - Python 3.0 or higher
-- The following modules: discord, asyncio
+- The following modules: discord, asyncio, pymongo
+- A MongoDB Community Server (For Blackhole, Messages are NEVER logged or stored)
 - A Discord bot token
 - An IQ of 5 or higher
 
@@ -28,7 +29,8 @@ Create a new file in PrivacyBot's directory called "config.json" (case-sensitive
 ```
 {
     "token":"<bot token>",
-    "prefix":["<desired prefix>"]
+    "prefix":["<desired prefix>"],
+    "mongo_url":"<MongoDB URL>"
 }
 ```
 
