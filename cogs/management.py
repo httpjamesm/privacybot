@@ -18,6 +18,7 @@ class management(commands.Cog):
             await ctx.channel.delete()
         else:# abort if "cancel" is received
             await ctx.send("Operation aborted.",delete_after=15)
+
     @commands.command()
     @commands.has_permissions(manage_messages=True)
     async def purge(self,ctx,limit="0"):
@@ -27,7 +28,7 @@ class management(commands.Cog):
     @commands.command()
     @commands.has_permissions(manage_messages=True)
     async def purgeuser(self,ctx,limit,target:discord.Member):
-        def is_user(m):
+        def is_user(m):# Check to see if a message's author is the desired user to purge.
             return m.author == target
         await ctx.channel.purge(limit=int(limit), check=is_user)
         await ctx.send("done")

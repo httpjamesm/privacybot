@@ -15,33 +15,27 @@ class messaging(commands.Cog):
         splitted = parameters.split()
         integer_detected = self.is_number(str(splitted[0]))
         if integer_detected == False:
-            await ctx.message.delete()
-            embed=discord.Embed(title=":clock1: Self-Destructing Message from " + str(ctx.author.name), description=' '.join(splitted), color=0xff2600)
-            embed.set_footer(text="Lifespan: 5 seconds")
-            await ctx.send(embed=embed,delete_after=5)
+            timer = 5
         else:
-            await ctx.message.delete()
             timer = int(splitted[0])
             del splitted[0]
-            embed=discord.Embed(title=":clock1: Self-Destructing Message from " + str(ctx.author.name), description=' '.join(splitted), color=0xff2600)
-            embed.set_footer(text="Lifespan: " + str(timer) + " seconds")
-            await ctx.send(embed=embed,delete_after=timer)
+        await ctx.message.delete()
+        embed=discord.Embed(title=":clock1: Self-Destructing Message from " + str(ctx.author.name), description=' '.join(splitted), color=0xff2600)
+        embed.set_footer(text="Lifespan: " + str(timer) + " seconds")
+        await ctx.send(embed=embed,delete_after=timer)
     @commands.command(aliases=["anontimer","anontimed","anondestruct","anon-expire","anon-timer","anon-timed","anon-destruct"])
     async def anonexpire(self, ctx,*,parameters):
         splitted = parameters.split()
         integer_detected = self.is_number(str(splitted[0]))
         if integer_detected == False:
-            await ctx.message.delete()
-            embed=discord.Embed(title=":clock1: Self-Destructing Message from Anonymous", description=' '.join(splitted), color=0xff2600)
-            embed.set_footer(text="Lifespan: 5 seconds")
-            await ctx.send(embed=embed,delete_after=5)
+            timer = 5
         else:
-            await ctx.message.delete()
             timer = int(splitted[0])
             del splitted[0]
-            embed=discord.Embed(title=":clock1: Self-Destructing Message from Anonymous", description=' '.join(splitted), color=0xff2600)
-            embed.set_footer(text="Lifespan: " + str(timer) + " seconds")
-            await ctx.send(embed=embed,delete_after=timer)
+        await ctx.message.delete()
+        embed=discord.Embed(title=":clock1: Self-Destructing Message from Anonymous", description=' '.join(splitted), color=0xff2600)
+        embed.set_footer(text="Lifespan: " + str(timer) + " seconds")
+        await ctx.send(embed=embed,delete_after=timer)
     @commands.command()
     async def anon(self,ctx,*,msg):
         await ctx.message.delete()

@@ -7,9 +7,10 @@ import settings
 class blackhole(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
-    mongoclient = pymongo.MongoClient(settings.mongo_url)
+    mongoclient = pymongo.MongoClient(settings.mongo_url)# Connect to MongoDB Server
     blackholedb = mongoclient["blackholedb"]
     blackholecol = blackholedb["channels"]
+
     @commands.command()
     @commands.has_permissions(manage_messages=True)
     async def blackhole(self,ctx,channel: discord.TextChannel):
