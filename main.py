@@ -25,4 +25,9 @@ if __name__ == '__main__':
 async def ping(ctx):
     await ctx.send('Pong! {0} seconds.'.format(round(bot.latency, 5)))
 
+# Process commands.
+@bot.event
+async def on_message(message):
+    await bot.process_commands(message)
+
 bot.run(settings.token)

@@ -24,7 +24,11 @@ class management(commands.Cog):
     @commands.command()
     @commands.has_permissions(manage_messages=True)
     async def purge(self,ctx,limit="0"):
-        await ctx.channel.purge(limit=int(limit))
+        try:
+            await ctx.channel.purge(limit=int(limit))
+        except:
+            await ctx.send(":warning: I couldn't purge any messages. Did you give me the correct permissions?")
+            return
         await ctx.send("Purged **" + limit + "** messages!",delete_after=5)
     
     @commands.command()
@@ -35,6 +39,6 @@ class management(commands.Cog):
         # Purge messages that are only from the desired user.
         await ctx.channel.purge(limit=int(limit), check=is_user)
         await ctx.send("done")
-        
+
 def setup(bot):
     bot.add_cog(management(bot))

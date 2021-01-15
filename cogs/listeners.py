@@ -29,7 +29,6 @@ class listeners(commands.Cog):
                 if message.channel.id == x["channelid"]:
                     # If the message is in the blackhole channel, delete it.
                     await message.delete()
-                    return
 
         # Ephemeral Messaging Shortcuts
         splitted = list(message.content)
@@ -48,10 +47,6 @@ class listeners(commands.Cog):
                 embed=discord.Embed(title=":clock1: Self-Destructing Message from Anonymous", description=''.join(splitted), color=0xff2600)
                 embed.set_footer(text="Lifespan: 10 seconds")
                 await message.channel.send(embed=embed,delete_after=10)
-        # ---
-        else:
-            # Process commands like normal
-            await self.bot.process_commands(message)
 
 def setup(bot):
     bot.add_cog(listeners(bot))
