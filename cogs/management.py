@@ -4,6 +4,7 @@ from discord.ext import commands
 class management(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
+        # Re-define the bot object into the class.
     @commands.command()
     @commands.has_permissions(manage_channels=True)
     async def wipe(self,ctx):
@@ -30,6 +31,7 @@ class management(commands.Cog):
     async def purgeuser(self,ctx,limit,target:discord.Member):
         def is_user(m):# Check to see if a message's author is the desired user to purge.
             return m.author == target
+        # Purge messages that are only from the desired user.
         await ctx.channel.purge(limit=int(limit), check=is_user)
         await ctx.send("done")
 def setup(bot):
