@@ -8,6 +8,7 @@ class blackhole(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
         # Re-define the bot object into the class.
+        
     mongoclient = pymongo.MongoClient(settings.mongo_url)# Connect to MongoDB Server
     blackholecol = mongoclient["blackholedb"]["channels"]
 
@@ -22,7 +23,6 @@ class blackhole(commands.Cog):
         # If this is the server's first time blackhole setup, create a new entry.
         self.blackholecol.insert_one({"serverid":ctx.guild.id,"channelid":channel.id})
         await ctx.send(":white_check_mark: Blackhole channel set for **" + ctx.guild.name + "**.")
-
 
 def setup(bot):
     bot.add_cog(blackhole(bot))

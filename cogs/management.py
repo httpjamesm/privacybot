@@ -5,6 +5,7 @@ class management(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
         # Re-define the bot object into the class.
+
     @commands.command()
     @commands.has_permissions(manage_channels=True)
     async def wipe(self,ctx):
@@ -34,5 +35,6 @@ class management(commands.Cog):
         # Purge messages that are only from the desired user.
         await ctx.channel.purge(limit=int(limit), check=is_user)
         await ctx.send("done")
+        
 def setup(bot):
     bot.add_cog(management(bot))

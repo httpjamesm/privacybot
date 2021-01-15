@@ -11,6 +11,7 @@ initial_extensions = [
     'cogs.blackhole',
     'cogs.listeners'
 ]
+
 bot = commands.Bot(command_prefix=settings.prefix)
 
 # Load the Cog files into memory
@@ -23,6 +24,5 @@ if __name__ == '__main__':
 @commands.cooldown(1,30,commands.BucketType.guild)
 async def ping(ctx):
     await ctx.send('Pong! {0} seconds.'.format(round(bot.latency, 5)))
-
 
 bot.run(settings.token)
