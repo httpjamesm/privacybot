@@ -19,15 +19,25 @@ class listeners(commands.Cog):
         await self.bot.change_presence(activity=discord.Game(name="!help"))
         print("[INFO] Username:",self.bot.user.name)
         print("[INFO] User ID:",self.bot.user.id)
-    
+        
     # When a message is detected, do X
     @commands.Cog.listener('on_message')
     async def on_message(self,message):
         if (blackholedb.channels.count_documents({ 'serverid':message.guild.id }, limit = 1) != 0):# Check if the server setup a blackhole channel
             doc = blackholecol.find({"serverid":message.guild.id})
             for x in doc:
-                if message.channel.id == x["channelid"]:
-                    # If the message is in the blackhole channel, delete it.
+                # If the message is in the blackhole channel and the author is not the bot:
+                if message.channel.id == x["channelid"] and message.author != self.bot.user:
+                    # Check if anti ping has been set
+                    try:
+                        antiping = x["antiping"]
+                    except:
+                        # If anti ping has not been turned on or off, return
+                        return
+                    # If anti ping is enabled and there is a mention, expose the user
+                    if (len(message.mentions) > 0) and (x["antiping"] == "on"):
+                        await message.channel.send(":exclamation: " + message.author.mention + " has ghost pinged a user and/or role!")
+                    # Delete the message
                     await message.delete()
 
         # Ephemeral Messaging Shortcuts
