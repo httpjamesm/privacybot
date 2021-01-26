@@ -34,8 +34,8 @@ class listeners(commands.Cog):
                     except:
                         # If anti ping has not been turned on or off, return
                         return
-                    # If anti ping is enabled and there is a mention, expose the user
-                    if (len(message.mentions) > 0) and (x["antiping"] == "on"):
+                    # If anti ping is enabled and there is a mention that is not themselves, expose the user
+                    if ((len(message.mentions) > 0 or len(message.role_mentions) > 0) and message.author.id not in message.raw_mentions) and (x["antiping"] == "on"):
                         await message.channel.send(":exclamation: " + message.author.mention + " has ghost pinged a user and/or role!")
                     # Delete the message
                     await message.delete()
