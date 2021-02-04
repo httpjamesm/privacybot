@@ -9,10 +9,12 @@ initial_extensions = [
     'cogs.messaging',
     'cogs.management',
     'cogs.blackhole',
-    'cogs.listeners'
+    'cogs.listeners',
+    'cogs.misc'
 ]
 
 bot = commands.Bot(command_prefix=settings.prefix)
+bot.remove_command("help")
 
 # Load the Cog files into memory
 if __name__ == '__main__':

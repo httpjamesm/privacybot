@@ -40,5 +40,20 @@ class management(commands.Cog):
         await ctx.channel.purge(limit=int(limit), check=is_user)
         await ctx.send("done")
 
+    @commands.command()
+    @commands.has_permissions(manage_guild=True)
+    async def setting(self,ctx,*,params=None):
+        try:
+            split_params = params.split()
+            setting_name = str(params[0]).lower()
+        except:
+            await ctx.send(":warning: Invalid parameters!")
+        if setting_name == "antipingttl" and is_integer(params[1]) == True:
+            settings.
+
+
+
+
+
 def setup(bot):
     bot.add_cog(management(bot))
